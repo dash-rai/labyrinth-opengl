@@ -3,7 +3,7 @@
 
 using namespace std;
 
-double rotate_y = 0, rotate_z = 0;
+double rotate_y = 0, rotate_x = 0;
 
 float ver[8][3] = {
         {-2.0,-1.0,1.0},
@@ -46,9 +46,9 @@ void specialKeys( int key, int x, int y )
         else if (key == GLUT_KEY_LEFT)
                 rotate_y -= 5;
         else if (key == GLUT_KEY_UP)
-                rotate_z += 5;
+                rotate_x += 5;
         else if (key == GLUT_KEY_DOWN)
-                rotate_z -= 5;
+                rotate_x -= 5;
         glutPostRedisplay();
 }
 
@@ -62,7 +62,9 @@ void display()
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        glRotatef(rotate_z, 1.0, 0.0, 1.0);
+        gluPerspective(60.0, w/h, 0.1, 100.0);
+        gluLookAt(0, 0, 5, 0, 0, 2, 0, 1, 0);
+        glRotatef(rotate_x, 1.0, 0.0, 0.0);
         glRotatef(rotate_y, 0.0, 1.0, 0.0);
         colorcube();
         glutSwapBuffers();
@@ -72,7 +74,7 @@ int main(int argc, char *argv[])
 {
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-        glutInitWindowSize(1366, 768);
+        glutInitWindowSize(400, 400);
         glutCreateWindow("Labyrinth");
         glutDisplayFunc(display);
         glutSpecialFunc(specialKeys);
