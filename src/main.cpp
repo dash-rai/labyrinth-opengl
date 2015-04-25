@@ -6,22 +6,19 @@ using namespace std;
 double rotate_y = 0, rotate_x = 0;
 
 float ver[8][3] = {
-        {-2.0,-1.0,1.0},
-        {-2.0,1.0,1.0},
-        {2.0,1.0,1.0},
-        {2.0,-1.0,1.0},
-        {-2.0,-1.0,-1.0},
-        {-2.0,1.0,-1.0},
-        {2.0,1.0,-1.0},
-        {2.0,-1.0,-1.0},
+        {-2.0, -2.0, 0.5},
+        {-2.0, 2.0, 0.5},
+        {2.0, 2.0, 0.5},
+        {2.0, -2.0, 0.5},
+        {-2.0, -2.0, -0.5},
+        {-2.0, 2.0, -0.5},
+        {2.0, 2.0, -0.5},
+        {2.0, -2.0, -0.5},
 };
-
-float color[4] = {0.5, 0, 1, 1};
 
 void quad(int a,int b,int c,int d)
 {
         glBegin(GL_QUADS);
-        glColor3fv(color);
         glVertex3fv(ver[a]);
         glVertex3fv(ver[b]);
         glVertex3fv(ver[c]);
@@ -31,24 +28,30 @@ void quad(int a,int b,int c,int d)
 
 void colorcube()
 {
+        glColor3f(1, 0, 0);
         quad(0,3,2,1);
+        glColor3f(0, 0, 1);
         quad(2,3,7,6);
+        glColor3f(0, 1, 0);
         quad(0,4,7,3);
+        glColor3f(0, 1, 1);
         quad(1,2,6,5);
+        glColor3f(1, 0, 1);
         quad(4,5,6,7);
+        glColor3f(1, 1, 0);
         quad(0,1,5,4);
 }
 
-void specialKeys( int key, int x, int y )
+void specialKeys(int key, int x, int y)
 {
-        if (key == GLUT_KEY_RIGHT)
+        if ((key == GLUT_KEY_RIGHT) && rotate_y <= 10)
                 rotate_y += 5;
-        else if (key == GLUT_KEY_LEFT)
+        else if ((key == GLUT_KEY_LEFT) && rotate_y >= -10)
                 rotate_y -= 5;
-        else if (key == GLUT_KEY_UP)
-                rotate_x += 5;
-        else if (key == GLUT_KEY_DOWN)
+        else if ((key == GLUT_KEY_UP) && rotate_x >= -10)
                 rotate_x -= 5;
+        else if ((key == GLUT_KEY_DOWN) && rotate_x <= 10)
+                rotate_x += 5;
         glutPostRedisplay();
 }
 
@@ -62,8 +65,8 @@ void display()
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluPerspective(60.0, w/h, 0.1, 100.0);
-        gluLookAt(0, 0, 5, 0, 0, 2, 0, 1, 0);
+        gluPerspective(35.0, w/h, 0.1, 100.0);
+        gluLookAt(0, 0, 8, 0, 0, 4, 0, 1, 0);
         glRotatef(rotate_x, 1.0, 0.0, 0.0);
         glRotatef(rotate_y, 0.0, 1.0, 0.0);
         colorcube();
