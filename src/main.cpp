@@ -1,12 +1,14 @@
 #include <GL/glut.h>
 #include <iostream>
 
-#define INIT_WINDOW_HEIGHT 400
-#define INIT_WINDOW_WIDTH 400
-
-// Greater the number, the lesser the sensitivity. Must be greater than 0
+/*
+ * Greater the number, the lesser the sensitivity.
+ * Must be greater than 0.
+ */
 #define MOUSE_SENSITIVITY 4.0
 #define BOARD_ROTATION_LIMIT 10.0
+#define INIT_WINDOW_HEIGHT 400
+#define INIT_WINDOW_WIDTH 400
 
 using namespace std;
 
@@ -33,7 +35,7 @@ void quad(int a,int b,int c,int d)
         glEnd();
 }
 
-void colorcube()
+void drawBoard()
 {
         glColor3f(1, 0, 0);
         quad(0,3,2,1);
@@ -68,7 +70,9 @@ void controlBoard(int current_x, int current_y)
         static int previous_y = (INIT_WINDOW_HEIGHT / 2);
         float delta_x, delta_y;
 
-        // y coordinate provided has origin at top-left and not bottom-left.
+        /*
+         * y coordinate provided has origin at top-left and not bottom-left.
+         */
         current_y = glutGet(GLUT_WINDOW_HEIGHT) - current_y;
         delta_x = (float) (current_x - previous_x) / MOUSE_SENSITIVITY;
         delta_y = (float) (current_y - previous_y) / MOUSE_SENSITIVITY;
@@ -89,8 +93,6 @@ void display()
 {
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
         int w = glutGet(GLUT_WINDOW_WIDTH);
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glMatrixMode(GL_MODELVIEW);
@@ -99,7 +101,7 @@ void display()
         gluLookAt(0, 0, 8, 0, 0, 4, 0, 1, 0);
         glRotatef(rotate_x, 1.0, 0.0, 0.0);
         glRotatef(rotate_y, 0.0, 1.0, 0.0);
-        colorcube();
+        drawBoard();
         glutSwapBuffers();
 }
 
