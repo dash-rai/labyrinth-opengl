@@ -1,6 +1,10 @@
 #include <GL/glut.h>
 #include <iostream>
 
+#define INIT_WINDOW_HEIGHT 400
+#define INIT_WINDOW_WIDTH 400
+#define MOUSE_SENSITIVITY 4.0   // Greater the number, the lesser the sensitivity. Must be greater than 0
+
 using namespace std;
 
 double rotate_y = 0, rotate_x = 0;
@@ -55,6 +59,26 @@ void specialKeys(int key, int x, int y)
         glutPostRedisplay();
 }
 
+void controlBoard(int current_x, int current_y)
+{
+        static int previous_x = (INIT_WINDOW_WIDTH / 2), previous_y = (INIT_WINDOW_HEIGHT / 2);
+        float delta_x, delta_y;
+
+        // y coordinate provided has origin at top-left and not bottom-left.
+        current_y = glutGet(GLUT_WINDOW_HEIGHT) - current_y;
+        delta_x = (float) (current_x - previous_x) / MOUSE_SENSITIVITY;
+        delta_y = (float) (current_y - previous_y) / MOUSE_SENSITIVITY;
+
+        if ((rotate_y + delta_x) < 15 && (rotate_y + delta_x) > -15)
+                rotate_y += delta_x;
+        if ((rotate_x - delta_y) < 15 && (rotate_x - delta_y) > -15)
+                rotate_x -= delta_y;
+
+        previous_x = current_x;
+        previous_y = current_y;
+        glutPostRedisplay();
+}
+
 void display()
 {
         glClearColor(0, 0, 0, 1);
@@ -77,11 +101,12 @@ int main(int argc, char *argv[])
 {
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-        glutInitWindowSize(400, 400);
+        glutInitWindowSize(INIT_WINDOW_HEIGHT, INIT_WINDOW_WIDTH);
         glutCreateWindow("Labyrinth");
         glutDisplayFunc(display);
         glutSpecialFunc(specialKeys);
         glEnable(GL_DEPTH_TEST);
+        glutPassiveMotionFunc(controlBoard);
         glutMainLoop();
         return 0;
 }
