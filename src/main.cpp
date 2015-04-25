@@ -3,7 +3,10 @@
 
 #define INIT_WINDOW_HEIGHT 400
 #define INIT_WINDOW_WIDTH 400
-#define MOUSE_SENSITIVITY 4.0   // Greater the number, the lesser the sensitivity. Must be greater than 0
+
+// Greater the number, the lesser the sensitivity. Must be greater than 0
+#define MOUSE_SENSITIVITY 4.0
+#define BOARD_ROTATION_LIMIT 10.0
 
 using namespace std;
 
@@ -61,7 +64,8 @@ void specialKeys(int key, int x, int y)
 
 void controlBoard(int current_x, int current_y)
 {
-        static int previous_x = (INIT_WINDOW_WIDTH / 2), previous_y = (INIT_WINDOW_HEIGHT / 2);
+        static int previous_x = (INIT_WINDOW_WIDTH / 2);
+        static int previous_y = (INIT_WINDOW_HEIGHT / 2);
         float delta_x, delta_y;
 
         // y coordinate provided has origin at top-left and not bottom-left.
@@ -69,9 +73,11 @@ void controlBoard(int current_x, int current_y)
         delta_x = (float) (current_x - previous_x) / MOUSE_SENSITIVITY;
         delta_y = (float) (current_y - previous_y) / MOUSE_SENSITIVITY;
 
-        if ((rotate_y + delta_x) < 15 && (rotate_y + delta_x) > -15)
+        if ((rotate_y + delta_x) < BOARD_ROTATION_LIMIT &&
+            (rotate_y + delta_x) > -BOARD_ROTATION_LIMIT)
                 rotate_y += delta_x;
-        if ((rotate_x - delta_y) < 15 && (rotate_x - delta_y) > -15)
+        if ((rotate_x - delta_y) < BOARD_ROTATION_LIMIT &&
+            (rotate_x - delta_y) > -BOARD_ROTATION_LIMIT)
                 rotate_x -= delta_y;
 
         previous_x = current_x;
