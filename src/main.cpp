@@ -97,8 +97,8 @@ void display()
         int h = glutGet(GLUT_WINDOW_HEIGHT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluPerspective(35.0, w/h, 0.1, 100.0);
-        gluLookAt(0, 0, 8, 0, 0, 4, 0, 1, 0);
+        gluPerspective(5.0, w/h, 0.1, 100.0);
+        gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
         glRotatef(rotate_x, 1.0, 0.0, 0.0);
         glRotatef(rotate_y, 0.0, 1.0, 0.0);
         drawBoard();
