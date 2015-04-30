@@ -1,19 +1,20 @@
 #include <GL/glut.h>
 #include <iostream>
 #include "drawboard.h"
-
+#include <SOIL/SOIL.h>
 /*
  * Greater the number, the lesser the sensitivity.
  * Must be greater than 0.
  */
 #define MOUSE_SENSITIVITY 4.0
-#define BOARD_ROTATION_LIMIT 10.0
+#define BOARD_ROTATION_LIMIT 100.0
 #define INIT_WINDOW_HEIGHT 400
 #define INIT_WINDOW_WIDTH 400
 
 using namespace std;
 
 double rotate_y = 0, rotate_x = 0;
+GLuint texture;
 
 void specialKeys(int key, int x, int y)
 {
@@ -65,8 +66,19 @@ void display()
         gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
         glRotatef(rotate_x, 1.0, 0.0, 0.0);
         glRotatef(rotate_y, 0.0, 1.0, 0.0);
-        drawBoard();
+        drawBoard(texture);
         glutSwapBuffers();
+}
+
+void lab_init()
+{
+        texture = SOIL_load_OGL_texture
+                (
+                        "res/woodtexture.bmp",
+                        SOIL_LOAD_AUTO,
+                        SOIL_CREATE_NEW_ID,
+                        SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+                        );
 }
 
 int main(int argc, char *argv[])
@@ -79,6 +91,7 @@ int main(int argc, char *argv[])
         glutSpecialFunc(specialKeys);
         glEnable(GL_DEPTH_TEST);
         glutPassiveMotionFunc(controlBoard);
+        lab_init();
         glutMainLoop();
         return 0;
 }
