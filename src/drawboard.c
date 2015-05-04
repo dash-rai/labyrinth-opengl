@@ -12,7 +12,51 @@ float ver[8][3] = {
         {2.0, -2.0, -0.5},
 };
 
-void quad(int a,int b,int c,int d)
+float rightwall[8][3] = {
+        {1.98, -2, 0.7},
+        {1.98, 2, 0.7},
+        {2, 2, 0.7},
+        {2, -2, 0.7},
+        {1.98, -2, 0.5},
+        {1.98, 2, 0.5},
+        {2, 2, 0.5},
+        {2, -2, 0.5},
+};
+
+float leftwall[8][3] = {
+        {-1.98, -2, 0.7},
+        {-1.98, 2, 0.7},
+        {-2, 2, 0.7},
+        {-2, -2, 0.7},
+        {-1.98, -2, 0.5},
+        {-1.98, 2, 0.5},
+        {-2, 2, 0.5},
+        {-2, -2, 0.5},
+};
+
+float topwall[8][3] = {
+        {1.98, 1.98, 0.7},
+        {1.98, 2, 0.7},
+        {-1.98, 2, 0.7},
+        {-1.98, 1.98, 0.7},
+        {1.98, 1.98, 0.5},
+        {1.98, 2, 0.5},
+        {-1.98, 2, 0.5},
+        {-1.98, 1.98, 0.5},
+};
+
+float botwall[8][3] = {
+        {1.98, -1.98, 0.7},
+        {1.98, -2, 0.7},
+        {-1.98, -2, 0.7},
+        {-1.98, -1.98, 0.7},
+        {1.98, -1.98, 0.5},
+        {1.98, -2, 0.5},
+        {-1.98, -2, 0.5},
+        {-1.98, -1.98, 0.5},
+};
+
+void quad(int a,int b,int c,int d,float ver[8][3])
 {
         glPushMatrix();
         glBegin(GL_QUADS);
@@ -28,6 +72,16 @@ void quad(int a,int b,int c,int d)
         glPopMatrix();
 }
 
+void callQuad(float ver[8][3])
+{
+        quad(0,3,2,1,ver);
+        quad(2,3,7,6,ver);
+        quad(0,4,7,3,ver);
+        quad(1,2,6,5,ver);
+        quad(4,5,6,7,ver);
+        quad(0,1,5,4,ver);
+}
+
 void drawBoard(GLuint texture)
 {
         glEnable(GL_DEPTH_TEST);
@@ -36,11 +90,10 @@ void drawBoard(GLuint texture)
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
         glBindTexture(GL_TEXTURE_2D, texture);
-        quad(0,3,2,1);
-        quad(2,3,7,6);
-        quad(0,4,7,3);
-        quad(1,2,6,5);
-        quad(4,5,6,7);
-        quad(0,1,5,4);
+        callQuad(ver);
+        callQuad(rightwall);
+        callQuad(leftwall);
+        callQuad(topwall);
+        callQuad(botwall);
         glDisable(GL_TEXTURE_2D);
 }

@@ -7,7 +7,8 @@
  * Must be greater than 0.
  */
 #define MOUSE_SENSITIVITY 4.0
-#define BOARD_ROTATION_LIMIT 100.0
+#define BOARD_ROTATION_LIMIT 10.0
+
 #define INIT_WINDOW_HEIGHT 400
 #define INIT_WINDOW_WIDTH 400
 
