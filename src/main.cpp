@@ -9,8 +9,8 @@
 #define MOUSE_SENSITIVITY 4.0
 #define BOARD_ROTATION_LIMIT 10.0
 
-#define INIT_WINDOW_HEIGHT 400
-#define INIT_WINDOW_WIDTH 400
+#define INIT_WINDOW_HEIGHT 700
+#define INIT_WINDOW_WIDTH 700
 
 using namespace std;
 
@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
         glutInitWindowSize(INIT_WINDOW_HEIGHT, INIT_WINDOW_WIDTH);
+        glutInitWindowPosition(0, 0);
         glutCreateWindow("Labyrinth");
         glutDisplayFunc(display);
         glutSpecialFunc(specialKeys);
