@@ -1,7 +1,6 @@
 #include <GL/glut.h>
 #include <SOIL/SOIL.h>
 #include <Box2D/Box2D.h>
-#include <iostream>
 #include "drawboard.h"
 #include "startscreen.h"
 
@@ -12,10 +11,8 @@
 #define MOUSE_SENSITIVITY 4.0
 #define BOARD_ROTATION_LIMIT 10.0
 
-#define INIT_WINDOW_HEIGHT 700
 #define INIT_WINDOW_WIDTH 700
-
-using namespace std;
+#define INIT_WINDOW_HEIGHT 700
 
 double rotate_y = 0, rotate_x = 0;
 GLuint wood_t, start_t;
@@ -110,7 +107,7 @@ int main(int argc, char *argv[])
 {
         glutInit(&argc, argv);
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-        glutInitWindowSize(INIT_WINDOW_HEIGHT, INIT_WINDOW_WIDTH);
+        glutInitWindowSize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
         glutInitWindowPosition(0, 0);
         glutCreateWindow("Labyrinth");
         glutDisplayFunc(display);
