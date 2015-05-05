@@ -1,5 +1,5 @@
 CFLAGS=-g -O2
-LIBS=-lGL -lGLU -lglut -lSOIL
+LIBS=-lGL -lGLU -lglut -lSOIL -lBox2D
 
 all: src/main.cpp drawboard.o
 	-@mkdir build

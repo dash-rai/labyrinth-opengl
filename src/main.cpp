@@ -2,6 +2,8 @@
 #include <iostream>
 #include "drawboard.h"
 #include <SOIL/SOIL.h>
+#include <Box2D/Box2D.h>
+
 /*
  * Greater the number, the lesser the sensitivity.
  * Must be greater than 0.
@@ -16,6 +18,7 @@ using namespace std;
 
 double rotate_y = 0, rotate_x = 0;
 GLuint texture;
+b2World world(b2Vec2(0, 0));    // Create Box2D world with 0 gravity
 
 void specialKeys(int key, int x, int y)
 {
@@ -52,7 +55,6 @@ void controlBoard(int current_x, int current_y)
 
         previous_x = current_x;
         previous_y = current_y;
-        glutPostRedisplay();
 }
 
 void display()
@@ -82,6 +84,14 @@ void lab_init()
                         );
 }
 
+void step()
+{
+        if (glutGet(GLUT_ELAPSED_TIME) % (1000/60)) {
+                world.Step(1.0f/60.0f, 6, 2);
+                glutPostRedisplay();
+        }
+}
+
 int main(int argc, char *argv[])
 {
         glutInit(&argc, argv);
@@ -94,6 +104,7 @@ int main(int argc, char *argv[])
         glEnable(GL_DEPTH_TEST);
         glutPassiveMotionFunc(controlBoard);
         lab_init();
+        glutIdleFunc(step);
         glutMainLoop();
         return 0;
 }
