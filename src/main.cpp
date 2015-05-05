@@ -1,8 +1,9 @@
 #include <GL/glut.h>
-#include <iostream>
-#include "drawboard.h"
 #include <SOIL/SOIL.h>
 #include <Box2D/Box2D.h>
+#include <iostream>
+#include "drawboard.h"
+#include "startscreen.h"
 
 /*
  * Greater the number, the lesser the sensitivity.
@@ -17,7 +18,7 @@
 using namespace std;
 
 double rotate_y = 0, rotate_x = 0;
-GLuint texture;
+GLuint wood_t, start_t;
 b2World world(b2Vec2(0, 0));    // Create Box2D world with 0 gravity
 
 void specialKeys(int key, int x, int y)
@@ -59,6 +60,8 @@ void controlBoard(int current_x, int current_y)
 
 void display()
 {
+        static int start = 0;
+
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         int w = glutGet(GLUT_WINDOW_WIDTH);
@@ -67,17 +70,28 @@ void display()
         glLoadIdentity();
         gluPerspective(5.0, w/h, 0.1, 100.0);
         gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
-        glRotatef(rotate_x, 1.0, 0.0, 0.0);
-        glRotatef(rotate_y, 0.0, 1.0, 0.0);
-        drawBoard(texture);
+        if (!start) {
+                start = displayStart(start_t);
+        } else {
+                glRotatef(rotate_x, 1.0, 0.0, 0.0);
+                glRotatef(rotate_y, 0.0, 1.0, 0.0);
+                drawBoard(wood_t);
+        }
         glutSwapBuffers();
 }
 
-void lab_init()
+void initTextures()
 {
-        texture = SOIL_load_OGL_texture
+        wood_t = SOIL_load_OGL_texture
                 (
-                        "res/woodtexture.bmp",
+                        "res/woodtexture.jpg",
+                        SOIL_LOAD_AUTO,
+                        SOIL_CREATE_NEW_ID,
+                        SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+                        );
+        start_t = SOIL_load_OGL_texture
+                (
+                        "res/startscreen.png",
                         SOIL_LOAD_AUTO,
                         SOIL_CREATE_NEW_ID,
                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
@@ -103,7 +117,7 @@ int main(int argc, char *argv[])
         glutSpecialFunc(specialKeys);
         glEnable(GL_DEPTH_TEST);
         glutPassiveMotionFunc(controlBoard);
-        lab_init();
+        initTextures();
         glutIdleFunc(step);
         glutMainLoop();
         return 0;
