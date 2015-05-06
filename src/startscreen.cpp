@@ -1,9 +1,6 @@
 #include <GL/glut.h>
 #include <unistd.h>
-#include <iostream>
 #include "startscreen.h"
-
-using namespace std;
 
 int w, h;
 int stop = 0;
@@ -11,8 +8,8 @@ int stop = 0;
 void mouse(int btn, int state, int x, int y)
 {
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN) {
-		if (float(x)/w >= 0.4 && float(x)/w <= 0.6)
-			if (float(y)/h >= 0.327 && float(y)/h <= .3857) {
+		if (float(x)/w >= 0.4 && float(x)/w <= 0.54)
+			if (float(y)/h >= 0.22 && float(y)/h <= .27) {
 				stop = 1;
 			}
 	}

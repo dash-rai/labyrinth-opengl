@@ -7,7 +7,7 @@
  * T is the thickness of the wall
  * H is the height
  */
-#define X 2.0
+#define X 3.0
 #define Y 2.0
 #define Z 0.5
 #define T 0.08
