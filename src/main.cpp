@@ -16,8 +16,8 @@
 #define INIT_WINDOW_HEIGHT 768
 
 #define PI 3.14159265
-#define GRAVITY 0.5
-#define RESTITUTION 0.8
+#define GRAVITY 0.01
+#define RESTITUTION 0.5
 
 double rotate_y = 0, rotate_x = 0;
 GLuint wood_t, start_t;
@@ -43,7 +43,7 @@ void createBallObject()
         ballBody = world.CreateBody(&ballBodyDef);
 
         b2PolygonShape ballBox;
-        ballBox.SetAsBox(0.1, 0.1);
+        ballBox.SetAsBox(0.075, 0.075);
 
         b2FixtureDef ballFixtureDef;
         ballFixtureDef.shape = &ballBox;
@@ -83,14 +83,14 @@ void createWallObjects()
 
 void specialKeys(int key, int x, int y)
 {
-        if ((key == GLUT_KEY_RIGHT) && rotate_y <= 10)
-                rotate_y += 5;
-        else if ((key == GLUT_KEY_LEFT) && rotate_y >= -10)
-                rotate_y -= 5;
-        else if ((key == GLUT_KEY_UP) && rotate_x >= -10)
-                rotate_x -= 5;
-        else if ((key == GLUT_KEY_DOWN) && rotate_x <= 10)
-                rotate_x += 5;
+        if ((key == GLUT_KEY_RIGHT) && rotate_y <= BOARD_ROTATION_LIMIT)
+                rotate_y += 2;
+        else if ((key == GLUT_KEY_LEFT) && rotate_y >= -BOARD_ROTATION_LIMIT)
+                rotate_y -= 2;
+        else if ((key == GLUT_KEY_UP) && rotate_x >= -BOARD_ROTATION_LIMIT)
+                rotate_x -= 2;
+        else if ((key == GLUT_KEY_DOWN) && rotate_x <= BOARD_ROTATION_LIMIT)
+                rotate_x += 2;
         glutPostRedisplay();
 }
 
