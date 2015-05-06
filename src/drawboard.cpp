@@ -1,18 +1,6 @@
 #include <GL/glut.h>
 #include <stdio.h>
-
-#define NUMBER_OF_WALLS 4
-
-/*
- * X, Y, Z stand for the co-ordinates
- * T is the thickness of the wall
- * H is the height
- */
-#define X 2.0
-#define Y 2.0
-#define Z 0.5
-#define T 0.08
-#define H 0.2
+#include "drawboard.h"
 
 /* order of vertices:
    bottom-left
@@ -58,25 +46,25 @@ float walls[NUMBER_OF_WALLS][8][3] = {
         },
         {
                 /* top wall */
-                {X-T, Y-T, Z+H},
-                {X-T, Y, Z+H},
-                {-X+T, Y, Z+H},
                 {-X+T, Y-T, Z+H},
-                {X-T, Y-T, Z},
-                {X-T, Y, Z},
-                {-X+T, Y, Z},
+                {-X+T, Y, Z+H},
+                {X-T, Y, Z+H},
+                {X-T, Y-T, Z+H},
                 {-X+T, Y-T, Z},
+                {-X+T, Y, Z},
+                {X-T, Y, Z},
+                {X-T, Y-T, Z},
         },
         {
                 /* bottom wall */
-                {X-T, -Y+T, Z+H},
-                {X-T, -Y, Z+H},
                 {-X+T, -Y, Z+H},
                 {-X+T, -Y+T, Z+H},
-                {X-T, -Y+T, Z},
-                {X-T, -Y, Z},
+                {X-T, -Y+T, Z+H},
+                {X-T, -Y, Z+H},
                 {-X+T, -Y, Z},
                 {-X+T, -Y+T, Z},
+                {X-T, -Y+T, Z},
+                {X-T, -Y, Z},
         },
 };
 
