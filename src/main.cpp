@@ -70,6 +70,7 @@ void display()
                 gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
                 start = displayStart(start_t);
         } else {
+                glutPassiveMotionFunc(controlBoard);
                 gluLookAt(0, 0, 80, 0, 0, 60, 0, 1, 0);
                 glRotatef(rotate_x, 1.0, 0.0, 0.0);
                 glRotatef(rotate_y, 0.0, 1.0, 0.0);
@@ -114,7 +115,6 @@ int main(int argc, char *argv[])
         glutDisplayFunc(display);
         glutSpecialFunc(specialKeys);
         glEnable(GL_DEPTH_TEST);
-        glutPassiveMotionFunc(controlBoard);
         initTextures();
         glutIdleFunc(step);
         glutMainLoop();
