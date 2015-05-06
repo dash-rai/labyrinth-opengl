@@ -202,7 +202,6 @@ int main(int argc, char *argv[])
         glutDisplayFunc(display);
         glutSpecialFunc(specialKeys);
         glEnable(GL_DEPTH_TEST);
-        glutPassiveMotionFunc(controlBoard);
         initLabyrinth();
         glutIdleFunc(step);
         glutMainLoop();
