@@ -11,8 +11,8 @@
 #define MOUSE_SENSITIVITY 4.0
 #define BOARD_ROTATION_LIMIT 10.0
 
-#define INIT_WINDOW_WIDTH 700
-#define INIT_WINDOW_HEIGHT 700
+#define INIT_WINDOW_WIDTH 1024
+#define INIT_WINDOW_HEIGHT 768
 
 double rotate_y = 0, rotate_x = 0;
 GLuint wood_t, start_t;
@@ -66,10 +66,11 @@ void display()
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         gluPerspective(5.0, w/h, 0.1, 100.0);
-        gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
         if (!start) {
+                gluLookAt(0, 0, 50, 0, 0, 40, 0, 1, 0);
                 start = displayStart(start_t);
         } else {
+                gluLookAt(0, 0, 80, 0, 0, 60, 0, 1, 0);
                 glRotatef(rotate_x, 1.0, 0.0, 0.0);
                 glRotatef(rotate_y, 0.0, 1.0, 0.0);
                 drawBoard(wood_t);
