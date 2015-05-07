@@ -39,7 +39,7 @@ void drawBall()
 void createBallObject()
 {
         b2BodyDef ballBodyDef;
-        ballBodyDef.position.Set(0, 0);
+        ballBodyDef.position.Set(-X + T + BALL_RADIUS, Y - T - BALL_RADIUS);
         ballBodyDef.type = b2_dynamicBody;
         ballBody = world.CreateBody(&ballBodyDef);
 
