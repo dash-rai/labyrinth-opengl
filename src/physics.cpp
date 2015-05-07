@@ -27,8 +27,8 @@ void createBallObject()
 
         b2FixtureDef ballFixtureDef;
         ballFixtureDef.shape = &ballCircle;
-        ballFixtureDef.density = 0.1;
-        ballFixtureDef.friction = 0.6;
+        ballFixtureDef.density = BALL_DENSITY;
+        ballFixtureDef.friction = FRICTION;
         ballFixtureDef.restitution = RESTITUTION;
         ballBody->CreateFixture(&ballFixtureDef);
 }
@@ -56,8 +56,8 @@ void createWallObjects()
 
                 b2FixtureDef wallFixtureDef;
                 wallFixtureDef.shape = &wallBox;
-                wallFixtureDef.density = 0.75;
-                wallFixtureDef.friction = 0.6;
+                wallFixtureDef.density = WALL_DENSITY;
+                wallFixtureDef.friction = FRICTION;
                 wallFixtureDef.restitution = RESTITUTION;
                 wallBody->CreateFixture(&wallFixtureDef);
         }
