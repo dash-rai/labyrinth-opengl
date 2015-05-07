@@ -16,8 +16,9 @@
 #define INIT_WINDOW_HEIGHT 768
 
 #define PI 3.14159265
-#define GRAVITY 0.01
+#define GRAVITY 0.5
 #define RESTITUTION 0.5
+#define BALL_RADIUS 0.075
 
 double rotate_y = 0, rotate_x = 0;
 GLuint wood_t, start_t;
@@ -30,8 +31,8 @@ void drawBall()
 {
         glPushMatrix();
                 glColor3f(0.74, 0.76, 0.78);
-                glTranslatef(ball_x, ball_y, 0.6);
-                glutSolidSphere(0.075, 50, 50);
+                glTranslatef(ball_x, ball_y, 0.5 + BALL_RADIUS);
+                glutSolidSphere(BALL_RADIUS, 50, 50);
         glPopMatrix();
 }
 
@@ -42,12 +43,13 @@ void createBallObject()
         ballBodyDef.type = b2_dynamicBody;
         ballBody = world.CreateBody(&ballBodyDef);
 
-        b2PolygonShape ballBox;
-        ballBox.SetAsBox(0.075, 0.075);
+        b2CircleShape ballCircle;
+        ballCircle.m_radius = BALL_RADIUS;
 
         b2FixtureDef ballFixtureDef;
-        ballFixtureDef.shape = &ballBox;
+        ballFixtureDef.shape = &ballCircle;
         ballFixtureDef.density = 0.1;
+        ballFixtureDef.friction = 0.6;
         ballFixtureDef.restitution = RESTITUTION;
         ballBody->CreateFixture(&ballFixtureDef);
 }
@@ -71,11 +73,12 @@ void createWallObjects()
                 b2Body *wallBody = world.CreateBody(&wallBodyDef);
 
                 b2PolygonShape wallBox;
-                wallBox.SetAsBox(width, height);
+                wallBox.SetAsBox(width / 2, height / 2);
 
                 b2FixtureDef wallFixtureDef;
                 wallFixtureDef.shape = &wallBox;
                 wallFixtureDef.density = 0.75;
+                wallFixtureDef.friction = 0.6;
                 wallFixtureDef.restitution = RESTITUTION;
                 wallBody->CreateFixture(&wallFixtureDef);
         }

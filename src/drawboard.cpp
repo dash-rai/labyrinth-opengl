@@ -35,10 +35,10 @@ float walls[NUMBER_OF_WALLS][8][3] = {
         },
         {
                 /* left wall */
-                {-X+T, -Y, Z+H},
-                {-X+T, Y, Z+H},
-                {-X, Y, Z+H},
                 {-X, -Y, Z+H},
+                {-X, Y, Z+H},
+                {-X+T, Y, Z+H},
+                {-X+T, -Y, Z+H},
                 {-X+T, -Y, Z},
                 {-X+T, Y, Z},
                 {-X, Y, Z},
