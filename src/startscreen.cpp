@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 #include <unistd.h>
 #include "startscreen.h"
+#include <iostream>
 
 int w, h;
 int stop = 0;
@@ -9,7 +10,7 @@ void mouse(int btn, int state, int x, int y)
 {
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN) {
 		if (float(x)/w >= 0.4 && float(x)/w <= 0.54)
-			if (float(y)/h >= 0.22 && float(y)/h <= .27) {
+			if (float(y)/h >= 0.20 && float(y)/h <= .24) {
 				stop = 1;
 			}
 	}
@@ -20,13 +21,13 @@ void putToScreen(GLuint start_t)
         glPushMatrix();
         glBegin(GL_QUADS);
         glTexCoord2f(0,0);
-        glVertex3f(-2, -2, 0.5);
+        glVertex3f(-2.2, -2.2, 0.5);
         glTexCoord2f(1,0);
-        glVertex3f(2, -2, 0.5);
+        glVertex3f(2.2, -2.2, 0.5);
         glTexCoord2f(1,1);
-        glVertex3f(2, 2, 0.5);
+        glVertex3f(2.2, 2.2, 0.5);
         glTexCoord2f(0,1);
-        glVertex3f(-2, 2, 0.5);
+        glVertex3f(-2.2, 2.2, 0.5);
         glEnd();
         glPopMatrix();
 }
