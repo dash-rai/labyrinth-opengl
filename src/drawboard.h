@@ -12,8 +12,12 @@
 #define Z 0.5
 #define T 0.08
 #define H 0.2
+#define INIT_WINDOW_WIDTH 1024
+#define INIT_WINDOW_HEIGHT 768
+#define BALL_RADIUS 0.075
 
 void drawBoard(GLuint texture);
 void quad(int, int, int, int);
+void drawBall();
 
 #endif /* _DRAWBOARD_H */

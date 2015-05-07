@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <Box2D/Box2D.h>
 #include <stdio.h>
 #include "drawboard.h"
 
@@ -107,4 +108,16 @@ void drawBoard(GLuint texture)
         for(int i = 0; i < NUMBER_OF_WALLS; i++)
             callQuad(walls[i]);
         glDisable(GL_TEXTURE_2D);
+}
+
+void drawBall()
+{
+        extern b2Body *ballBody;
+        b2Vec2 position = ballBody->GetPosition();
+
+        glPushMatrix();
+        glColor3f(0.74, 0.76, 0.78);
+        glTranslatef(position.x, position.y, 0.5 + BALL_RADIUS);
+        glutSolidSphere(BALL_RADIUS, 50, 50);
+        glPopMatrix();
 }
