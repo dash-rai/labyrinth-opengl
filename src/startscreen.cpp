@@ -3,14 +3,16 @@
 #include "startscreen.h"
 #include <iostream>
 
+using namespace std;
+
 int w, h;
 int stop = 0;
 
 void mouse(int btn, int state, int x, int y)
 {
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN) {
-		if (float(x)/w >= 0.4 && float(x)/w <= 0.54)
-			if (float(y)/h >= 0.20 && float(y)/h <= .24) {
+		if (float(x)/w >= 0.38 && float(x)/w <= 0.55)
+			if (float(y)/h >= 0.18 && float(y)/h <= .28) {
 				stop = 1;
 			}
 	}
