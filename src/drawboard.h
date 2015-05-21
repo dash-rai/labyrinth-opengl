@@ -17,7 +17,7 @@
 #define INIT_WINDOW_HEIGHT 768
 #define BALL_RADIUS 0.075
 /* MUST be greater than BALL_RADIUS */
-#define HOLE_RADIUS 0.08
+#define HOLE_RADIUS 0.1
 
 void drawBoard(GLuint texture);
 void quad(int, int, int, int);

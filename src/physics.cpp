@@ -83,19 +83,24 @@ void createWallObjects()
 
 void createHoleObjects()
 {
-        b2BodyDef holeBodyDef;
+        extern float holes[NUMBER_OF_HOLES][3];
 
-        holeBodyDef.position.Set(X - T - HOLE_RADIUS, Y - T - HOLE_RADIUS);
+        for (int i = 0; i < NUMBER_OF_HOLES; i++) {
+                b2BodyDef holeBodyDef;
+                holeBodyDef.position.Set(holes[i][0], holes[i][1]);
+                b2Body *holeBody = world.CreateBody(&holeBodyDef);
 
-        b2Body *holeBody = world.CreateBody(&holeBodyDef);
+                b2CircleShape holeCircle;
+                /*
+                 * TODO: allow some leeway by reducing the size of
+                 * the hole's fixture
+                 */
+                holeCircle.m_radius = HOLE_RADIUS;
 
-        b2CircleShape holeCircle;
-        /* allow some leeway by reducing the size of the hole's fixture */
-        holeCircle.m_radius = HOLE_RADIUS - BALL_RADIUS;
-
-        b2FixtureDef holeFixtureDef;
-        holeFixtureDef.shape = &holeCircle;
-        holeFixtureDef.isSensor = true;
-        holeBody->CreateFixture(&holeFixtureDef);
-        world.SetContactListener(&holeContactListenerInstance);
+                b2FixtureDef holeFixtureDef;
+                holeFixtureDef.shape = &holeCircle;
+                holeFixtureDef.isSensor = true;
+                holeBody->CreateFixture(&holeFixtureDef);
+                world.SetContactListener(&holeContactListenerInstance);
+        }
 }
