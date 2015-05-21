@@ -11,5 +11,6 @@
 void calcGravity(float *x, float *y, float rotate_x, float rotate_y);
 void createBallObject();
 void createWallObjects();
+void createHoleObjects();
 
 #endif
