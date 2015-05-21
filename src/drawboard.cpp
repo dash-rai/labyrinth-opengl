@@ -264,6 +264,7 @@ void callQuad(float ver[8][3])
 void drawHole(float hole[])
 {
         glPushMatrix();
+        glClearColor(0, 0, 0, 0);
         glColor3f(0, 0, 0);
         glTranslatef(hole[0], hole[1], hole[2]);
         glBegin(GL_POLYGON);
@@ -291,10 +292,10 @@ void drawBoard(GLuint textureBoard, GLuint textureWall)
         glBindTexture(GL_TEXTURE_2D, textureWall);
         for (int i = 4; i < NUMBER_OF_WALLS; i++)
                 callQuad(walls[i]);
+        glDisable(GL_TEXTURE_2D);
         /* draw holes */
         for(int i = 0; i < NUMBER_OF_HOLES; i++)
                 drawHole(holes[i]);
-        glDisable(GL_TEXTURE_2D);
 }
 
 void drawBall()
