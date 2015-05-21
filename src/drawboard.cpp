@@ -68,26 +68,26 @@ float walls[NUMBER_OF_WALLS][8][3] = {
                 {X-T, -Y, Z},
         },
         {
-                /* vertical wall */
-                {-X + 3 * WALL_UNIT, -Y, Z+H},
-                {-X + 3 * WALL_UNIT, -Y + 3 * WALL_UNIT, Z+H},
-                {-X+T + 3 * WALL_UNIT, -Y + 3 * WALL_UNIT, Z+H},
-                {-X+T + 3 * WALL_UNIT, -Y, Z+H},
-                {-X+T + 3 * WALL_UNIT, -Y, Z},
-                {-X+T + 3 * WALL_UNIT, -Y + 3 * WALL_UNIT, Z},
-                {-X + 3 * WALL_UNIT, -Y + 3 * WALL_UNIT, Z},
-                {-X + 3 * WALL_UNIT, -Y, Z},
+                /* bottom vertical wall */
+                {X_BLOCK(3) - T/2, Y_BLOCK(0), Z+H},
+                {X_BLOCK(3) - T/2, Y_BLOCK(2), Z+H},
+                {X_BLOCK(3) + T/2, Y_BLOCK(2), Z+H},
+                {X_BLOCK(3) + T/2, Y_BLOCK(0), Z+H},
+                {X_BLOCK(3) - T/2, Y_BLOCK(0), Z},
+                {X_BLOCK(3) - T/2, Y_BLOCK(2), Z},
+                {X_BLOCK(3) + T/2, Y_BLOCK(2), Z},
+                {X_BLOCK(3) + T/2, Y_BLOCK(2), Z},
         },
         {
-                /* bottom wall */
-                {-X + T, -Y + 2 * WALL_UNIT, Z+H},
-                {-X + T, -Y+T + 2 * WALL_UNIT, Z+H},
-                {-X - T + 3 * WALL_UNIT, -Y+T + 2 * WALL_UNIT, Z+H},
-                {-X - T + 3 * WALL_UNIT, -Y + 2 * WALL_UNIT, Z+H},
-                {-X + T, -Y + 2 * WALL_UNIT, Z},
-                {-X + T, -Y+T + 2 * WALL_UNIT, Z},
-                {-X - T + 3 * WALL_UNIT, -Y+T + 2 * WALL_UNIT, Z},
-                {-X - T + 3 * WALL_UNIT, -Y + 2 * WALL_UNIT, Z},
+                /* top vertical wall */
+                {X_BLOCK(4) - T/2, Y_BLOCK(2), Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(4), Z+H},
+                {X_BLOCK(4) + T/2, Y_BLOCK(4), Z+H},
+                {X_BLOCK(4) + T/2, Y_BLOCK(2), Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2), Z},
+                {X_BLOCK(4) - T/2, Y_BLOCK(4), Z},
+                {X_BLOCK(4) + T/2, Y_BLOCK(4), Z},
+                {X_BLOCK(4) + T/2, Y_BLOCK(2), Z},
         },
 };
 

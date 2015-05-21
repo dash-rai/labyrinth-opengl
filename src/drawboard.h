@@ -12,7 +12,9 @@
 #define Z 0.5
 #define T 0.08
 #define H 0.2
-#define WALL_UNIT 1
+
+#define X_BLOCK(N) ((-X + T) + ((X - T)/X)*N)
+#define Y_BLOCK(N) ((-Y + T) + ((Y - T)/Y)*N)
 #define INIT_WINDOW_WIDTH 1024
 #define INIT_WINDOW_HEIGHT 768
 #define BALL_RADIUS 0.075
