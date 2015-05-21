@@ -7,7 +7,7 @@
 #include "physics.h"
 
 double rotate_y = 0, rotate_x = 0;
-GLuint wood_t, start_t;
+GLuint wood_t, start_t, wall_t;
 b2World world(b2Vec2(0, 0));    // Create Box2D world with 0 gravity
 
 void initTextures()
@@ -23,6 +23,14 @@ void initTextures()
         start_t = SOIL_load_OGL_texture
                 (
                  "res/startscreen.png",
+                 SOIL_LOAD_AUTO,
+                 SOIL_CREATE_NEW_ID,
+                 SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y |
+                 SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+                 );
+        wall_t = SOIL_load_OGL_texture
+                (
+                 "res/walltexture.jpg",
                  SOIL_LOAD_AUTO,
                  SOIL_CREATE_NEW_ID,
                  SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y |
@@ -70,7 +78,7 @@ void display()
                 glRotatef(rotate_x, 1.0, 0.0, 0.0);
                 glRotatef(rotate_y, 0.0, 1.0, 0.0);
                 drawBall();
-                drawBoard(wood_t);
+                drawBoard(wood_t, wall_t);
         }
         glutSwapBuffers();
 }

@@ -249,17 +249,20 @@ void callQuad(float ver[8][3])
         quad(0,1,5,4,ver);
 }
 
-void drawBoard(GLuint texture)
+void drawBoard(GLuint textureBoard, GLuint textureWall)
 {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_TEXTURE_2D);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, textureBoard);
         callQuad(box_vertices);
         /* draw walls */
-        for(int i = 0; i < NUMBER_OF_WALLS; i++)
+        for (int i = 0; i < 4; i++)
+                callQuad(walls[i]);
+        glBindTexture(GL_TEXTURE_2D, textureWall);
+        for (int i = 4; i < NUMBER_OF_WALLS; i++)
                 callQuad(walls[i]);
         glDisable(GL_TEXTURE_2D);
 }

@@ -20,7 +20,7 @@
 #define INIT_WINDOW_HEIGHT 768
 #define BALL_RADIUS 0.075
 
-void drawBoard(GLuint texture);
+void drawBoard(GLuint, GLuint);
 void quad(int, int, int, int);
 void drawBall();
 
