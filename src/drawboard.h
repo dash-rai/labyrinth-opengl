@@ -1,7 +1,7 @@
 #ifndef _DRAWBOARD_H
 #define _DRAWBOARD_H
 
-#define NUMBER_OF_WALLS 4
+#define NUMBER_OF_WALLS 8
 /*
  * X, Y, Z stand for the co-ordinates
  * T is the thickness of the wall
@@ -12,6 +12,7 @@
 #define Z 0.5
 #define T 0.08
 #define H 0.2
+#define WALL_UNIT 1
 #define INIT_WINDOW_WIDTH 1024
 #define INIT_WINDOW_HEIGHT 768
 #define BALL_RADIUS 0.075
