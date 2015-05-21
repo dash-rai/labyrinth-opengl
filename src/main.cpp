@@ -43,6 +43,7 @@ void initLabyrinth()
         initTextures();
         createBallObject();
         createWallObjects();
+        createHoleObjects();
 }
 
 void step()

@@ -7,6 +7,24 @@
 b2Body *ballBody;
 extern b2World world;
 
+class HoleContactListener : public b2ContactListener
+{
+        void BeginContact(b2Contact *contact)
+        {
+                /* Process only hole-ball collisions */
+                if (contact->GetFixtureA()->IsSensor() ||
+                    contact->GetFixtureB()->IsSensor()) {
+
+                        b2Vec2 position = ballBody->GetPosition();
+                        killBall(position.x, position.y);
+                        // finishPlay();
+                }
+        }
+};
+
+/* Create collision listener */
+HoleContactListener holeContactListenerInstance;
+
 void calcGravity(float *x, float *y, float rotate_x, float rotate_y)
 {
         *x = sin(rotate_y * PI / 180.0) * GRAVITY;
@@ -60,5 +78,29 @@ void createWallObjects()
                 wallFixtureDef.friction = FRICTION;
                 wallFixtureDef.restitution = RESTITUTION;
                 wallBody->CreateFixture(&wallFixtureDef);
+        }
+}
+
+void createHoleObjects()
+{
+        extern float holes[NUMBER_OF_HOLES][3];
+
+        for (int i = 0; i < NUMBER_OF_HOLES; i++) {
+                b2BodyDef holeBodyDef;
+                holeBodyDef.position.Set(holes[i][0], holes[i][1]);
+                b2Body *holeBody = world.CreateBody(&holeBodyDef);
+
+                b2CircleShape holeCircle;
+                /*
+                 * TODO: allow some leeway by reducing the size of
+                 * the hole's fixture
+                 */
+                holeCircle.m_radius = HOLE_RADIUS;
+
+                b2FixtureDef holeFixtureDef;
+                holeFixtureDef.shape = &holeCircle;
+                holeFixtureDef.isSensor = true;
+                holeBody->CreateFixture(&holeFixtureDef);
+                world.SetContactListener(&holeContactListenerInstance);
         }
 }

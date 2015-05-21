@@ -2,6 +2,7 @@
 #define _DRAWBOARD_H
 
 #define NUMBER_OF_WALLS 18
+#define NUMBER_OF_HOLES 9
 /*
  * X, Y, Z stand for the co-ordinates
  * T is the thickness of the wall
@@ -19,9 +20,12 @@
 #define INIT_WINDOW_WIDTH 1024
 #define INIT_WINDOW_HEIGHT 768
 #define BALL_RADIUS 0.075
+/* MUST be greater than BALL_RADIUS */
+#define HOLE_RADIUS 0.1
 
 void drawBoard(GLuint, GLuint);
 void quad(int, int, int, int);
 void drawBall();
+void killBall(double x, double y);
 
 #endif /* _DRAWBOARD_H */
