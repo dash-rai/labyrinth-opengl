@@ -2,7 +2,7 @@
 #include <Box2D/Box2D.h>
 #include <stdio.h>
 #include "drawboard.h"
-
+#include <math.h>
 /* order of vertices:
    bottom-left
    top-left
@@ -69,6 +69,18 @@ float walls[NUMBER_OF_WALLS][8][3] = {
         },
 };
 
+float holes[NUMBER_OF_HOLES][3] = {
+        {-2.75, -1, Z + 0.1},
+        {-1, 1.5, Z + 0.01},
+        {-1, -0.5, Z + 0.01},
+        {0.5, 0, Z + 0.01},
+        {1, 1.75, Z + 0.01},
+        {2, 0.75, Z + 0.01},
+        {2, -1.25, Z + 0.01},
+        {2.5, 0, Z + 0.01},
+        {2.75, 0, Z + 0.01},
+};
+
 void quad(int a,int b,int c,int d,float ver[8][3])
 {
         glPushMatrix();
@@ -95,6 +107,21 @@ void callQuad(float ver[8][3])
         quad(0,1,5,4,ver);
 }
 
+void drawHole(float hole[])
+{
+        glPushMatrix();
+        glColor3f(0, 0, 0);
+        glTranslatef(hole[0], hole[1], hole[2]);
+        glBegin(GL_POLYGON);
+        double rad = 3.141592 / 180;
+        for(double i = 0; i < rad * 360; i += rad) {
+                glVertex2f(HOLE_RADIUS * cos(i),
+                           HOLE_RADIUS * sin(i));
+        }
+        glEnd();
+        glPopMatrix();
+}
+
 void drawBoard(GLuint texture)
 {
         glEnable(GL_DEPTH_TEST);
@@ -106,7 +133,10 @@ void drawBoard(GLuint texture)
         callQuad(box_vertices);
         /* draw walls */
         for(int i = 0; i < NUMBER_OF_WALLS; i++)
-            callQuad(walls[i]);
+                callQuad(walls[i]);
+        /* draw holes */
+        for(int i = 0; i < NUMBER_OF_HOLES; i++)
+                drawHole(holes[i]);
         glDisable(GL_TEXTURE_2D);
 }
 
@@ -124,5 +154,5 @@ void drawBall()
 
 void killBall(double x, double y)
 {
-    printf("You just sunk into a hole at (%lf, %lf) :(\n", x, y);
+        printf("You just sunk into a hole at (%lf, %lf) :(\n", x, y);
 }

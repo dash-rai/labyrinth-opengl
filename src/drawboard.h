@@ -2,6 +2,7 @@
 #define _DRAWBOARD_H
 
 #define NUMBER_OF_WALLS 4
+#define NUMBER_OF_HOLES 9
 /*
  * X, Y, Z stand for the co-ordinates
  * T is the thickness of the wall
