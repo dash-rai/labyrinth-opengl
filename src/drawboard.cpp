@@ -79,15 +79,15 @@ float walls[NUMBER_OF_WALLS][8][3] = {
                 {X_BLOCK(3) + T/2, Y_BLOCK(2), Z},
         },
         {
-                /* top vertical wall */
-                {X_BLOCK(4) - T/2, Y_BLOCK(2), Z+H},
-                {X_BLOCK(4) - T/2, Y_BLOCK(4), Z+H},
-                {X_BLOCK(4) + T/2, Y_BLOCK(4), Z+H},
-                {X_BLOCK(4) + T/2, Y_BLOCK(2), Z+H},
-                {X_BLOCK(4) - T/2, Y_BLOCK(2), Z},
-                {X_BLOCK(4) - T/2, Y_BLOCK(4), Z},
-                {X_BLOCK(4) + T/2, Y_BLOCK(4), Z},
-                {X_BLOCK(4) + T/2, Y_BLOCK(2), Z},
+                /* random horizontall wall */
+                {X_BLOCK(0), Y_BLOCK(3) - T/2, Z+H},
+                {X_BLOCK(0), Y_BLOCK(3) + T/2, Z+H},
+                {X_BLOCK(2), Y_BLOCK(3) + T/2, Z+H},
+                {X_BLOCK(2), Y_BLOCK(3) - T/2, Z+H},
+                {X_BLOCK(0), Y_BLOCK(3) - T/2, Z},
+                {X_BLOCK(0), Y_BLOCK(3) + T/2, Z},
+                {X_BLOCK(2), Y_BLOCK(3) + T/2, Z},
+                {X_BLOCK(2), Y_BLOCK(3) - T/2, Z},
         },
 };
 
