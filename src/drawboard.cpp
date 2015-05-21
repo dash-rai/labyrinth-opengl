@@ -9,7 +9,7 @@
    top-right
    bottom-right
    and front face first.
- */
+*/
 
 float box_vertices[8][3] = {
         {-X, -Y, Z},
@@ -67,6 +67,160 @@ float walls[NUMBER_OF_WALLS][8][3] = {
                 {X-T, -Y+T, Z},
                 {X-T, -Y, Z},
         },
+        {
+                /* Vertical; X - 2, Y - 1,6 */
+                {X_BLOCK(2) - T/2, Y_BLOCK(1), Z+H},
+                {X_BLOCK(2) - T/2, Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(1), Z+H},
+                {X_BLOCK(2) - T/2, Y_BLOCK(1), Z},
+                {X_BLOCK(2) - T/2, Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6), Z},
+        },
+        {
+                /* Vertical; X - 4, Y - 0,2 */
+                {X_BLOCK(4) - T/2, Y_BLOCK(0), Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(4) + T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(4) + T/2, Y_BLOCK(0), Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(0), Z},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(4) + T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(4) + T/2, Y_BLOCK(0), Z},
+        },
+        {
+                /* Vertical; X - 6, Y - 0,1 */
+                {X_BLOCK(6) - T/2, Y_BLOCK(0) - T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(1), Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(1), Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(0) - T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(0) - T/2, Z},
+                {X_BLOCK(6) - T/2, Y_BLOCK(1), Z},
+                {X_BLOCK(6) + T/2, Y_BLOCK(1), Z},
+                {X_BLOCK(6) + T/2, Y_BLOCK(0) - T/2, Z},
+        },
+        {
+                /* Vertical; X - 6, Y - 2,8 */
+                {X_BLOCK(6) - T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(8), Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(8), Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(2) - T/2, Z},
+                {X_BLOCK(6) - T/2, Y_BLOCK(8), Z},
+                {X_BLOCK(6) + T/2, Y_BLOCK(8), Z},
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) - T/2, Z},
+        },
+        {
+                /* Vertical; X - 8, Y - 4,6 */
+                {X_BLOCK(8) - T/2, Y_BLOCK(4), Z+H},
+                {X_BLOCK(8) - T/2, Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(8) + T/2, Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(8) + T/2, Y_BLOCK(4), Z+H},
+                {X_BLOCK(8) - T/2, Y_BLOCK(4), Z},
+                {X_BLOCK(8) - T/2, Y_BLOCK(6) - T/2, Z},
+                {X_BLOCK(8) + T/2, Y_BLOCK(6) - T/2, Z},
+                {X_BLOCK(8) + T/2, Y_BLOCK(4), Z},
+        },
+        {
+                /* Vertical; X - 10, Y - 2,4 */
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(10) + T/2, Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(10) + T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) - T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(10) + T/2, Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(10) + T/2, Y_BLOCK(2) - T/2, Z},
+        },
+        {
+                /* Vertical; X - 10, Y - 6,7 */
+                {X_BLOCK(10) - T/2, Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(7), Z+H},
+                {X_BLOCK(10) + T/2, Y_BLOCK(7), Z+H},
+                {X_BLOCK(10) + T/2, Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(7), Z},
+                {X_BLOCK(10) + T/2, Y_BLOCK(7), Z},
+                {X_BLOCK(10) + T/2, Y_BLOCK(6) + T/2, Z},
+        },
+        {
+                /* Horizontall; X - 0,1 Y - 4 */
+                {X_BLOCK(0), Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(0), Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(1), Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(1), Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(0), Y_BLOCK(4) - T/2, Z},
+                {X_BLOCK(0), Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(1), Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(1), Y_BLOCK(4) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 2,4 Y - 2 */
+                {X_BLOCK(2) + T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(2) - T/2, Z},
+                {X_BLOCK(2) + T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(4) - T/2, Y_BLOCK(2) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 2,4, Y - 6 */
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(4), Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(4), Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) - T/2, Z},
+                {X_BLOCK(2) + T/2, Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(4), Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(4), Y_BLOCK(6) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 4,6 Y - 4 */
+                {X_BLOCK(4), Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(4), Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(6) - T/2, Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(4), Y_BLOCK(4) - T/2, Z},
+                {X_BLOCK(4), Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(6) - T/2, Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(6) - T/2, Y_BLOCK(4) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 6,10 Y - 2 */
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) - T/2, Z+H},
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) - T/2, Z},
+                {X_BLOCK(6) + T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) + T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(2) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 9,10, Y - 4 */
+                {X_BLOCK(9), Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(9), Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) + T/2, Z+H},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) - T/2, Z+H},
+                {X_BLOCK(9), Y_BLOCK(4) - T/2, Z},
+                {X_BLOCK(9), Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) + T/2, Z},
+                {X_BLOCK(10) - T/2, Y_BLOCK(4) - T/2, Z},
+        },
+        {
+                /* Horizontall; X - 7,12, Y - 6 */
+                {X_BLOCK(7), Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(7), Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(12), Y_BLOCK(6) + T/2, Z+H},
+                {X_BLOCK(12), Y_BLOCK(6) - T/2, Z+H},
+                {X_BLOCK(7), Y_BLOCK(6) - T/2, Z},
+                {X_BLOCK(7), Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(12), Y_BLOCK(6) + T/2, Z},
+                {X_BLOCK(12), Y_BLOCK(6) - T/2, Z},
+        },
 };
 
 void quad(int a,int b,int c,int d,float ver[8][3])
@@ -106,7 +260,7 @@ void drawBoard(GLuint texture)
         callQuad(box_vertices);
         /* draw walls */
         for(int i = 0; i < NUMBER_OF_WALLS; i++)
-            callQuad(walls[i]);
+                callQuad(walls[i]);
         glDisable(GL_TEXTURE_2D);
 }
 
