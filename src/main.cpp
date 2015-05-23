@@ -69,8 +69,12 @@ void step()
                         // decrease velocity until 0
                         if (velocity.x > 0)
                                 velocity.x -= 0.5;
+                        else
+                                velocity.x = 0;
                         if (velocity.y > 0)
                                 velocity.y -= 0.5;
+                        else
+                                velocity.y = 0;
                         ballBody->SetLinearVelocity(velocity);
                 } else {
                         // normal gameplay
