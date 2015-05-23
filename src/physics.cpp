@@ -6,18 +6,23 @@
 
 b2Body *ballBody;
 extern b2World world;
-
+extern b2Vec2 hole_position;
+extern bool gameover;
 class HoleContactListener : public b2ContactListener
 {
         void BeginContact(b2Contact *contact)
         {
+                b2Fixture *fixA, *fixB;
                 /* Process only hole-ball collisions */
-                if (contact->GetFixtureA()->IsSensor() ||
-                    contact->GetFixtureB()->IsSensor()) {
-
-                        b2Vec2 position = ballBody->GetPosition();
-                        killBall(position.x, position.y);
+                fixA = contact->GetFixtureA();
+                fixB = contact->GetFixtureB();
+                if (fixA->IsSensor() || fixB->IsSensor()) {
+                        if (fixA->IsSensor())
+                                hole_position = fixA->GetBody()->GetPosition();
+                        else
+                                hole_position = fixB->GetBody()->GetPosition();
                         // finishPlay();
+                        gameover = true;
                 }
         }
 };

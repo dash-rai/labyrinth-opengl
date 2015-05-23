@@ -26,6 +26,5 @@
 void drawBoard(GLuint, GLuint);
 void quad(int, int, int, int);
 void drawBall();
-void killBall(double x, double y);
 
 #endif /* _DRAWBOARD_H */

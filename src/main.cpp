@@ -9,6 +9,8 @@
 double rotate_y = 0, rotate_x = 0;
 GLuint wood_t, start_t, wall_t;
 b2World world(b2Vec2(0, 0));    // Create Box2D world with 0 gravity
+b2Vec2 hole_position;
+bool gameover = false;
 
 void initTextures()
 {
@@ -53,7 +55,28 @@ void step()
         if (glutGet(GLUT_ELAPSED_TIME) % (1000/60)) {
                 float force_x, force_y;
                 calcGravity(&force_x, &force_y, rotate_x, rotate_y);
-                ballBody->ApplyForceToCenter(b2Vec2(force_x, force_y), true);
+                if (gameover) {
+                        // when the ball touches the hole
+                        b2Vec2 ball_pos = ballBody->GetPosition();
+                        ballBody->ApplyForceToCenter(
+                                b2Vec2(
+                                        // magnify the force
+                                        100 * (hole_position.x - ball_pos.x),
+                                        100 * (hole_position.y - ball_pos.y)
+                                        ),
+                                true);
+                        b2Vec2 velocity = ballBody->GetLinearVelocity();
+                        // decrease velocity until 0
+                        if (velocity.x > 0)
+                                velocity.x -= 0.5;
+                        if (velocity.y > 0)
+                                velocity.y -= 0.5;
+                        ballBody->SetLinearVelocity(velocity);
+                } else {
+                        // normal gameplay
+                        ballBody->ApplyForceToCenter(b2Vec2(force_x, force_y),
+                                                     true);
+                }
                 world.Step(1.0f/60.0f, 6, 2);
                 glutPostRedisplay();
         }

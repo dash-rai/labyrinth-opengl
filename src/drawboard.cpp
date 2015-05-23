@@ -309,9 +309,3 @@ void drawBall()
         glutSolidSphere(BALL_RADIUS, 50, 50);
         glPopMatrix();
 }
-
-void killBall(double x, double y)
-{
-        printf("You just sunk into a hole at (%lf, %lf) :(\n", x, y);
-        fflush(stdout);
-}
